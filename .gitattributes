@@ -1,0 +1,11 @@
+* text=auto
+
+*.sh text eol=lf
+*.conf text eol=lf
+*.ini text eol=lf
+*.rasi text eol=lf
+.xinitrc text eol=lf
+.Xresources text eol=lf
+
+*.jpg binary
+*.png binary
