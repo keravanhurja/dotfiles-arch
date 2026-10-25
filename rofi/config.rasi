@@ -1,0 +1,61 @@
+configuration {
+    modi: "drun,run";
+    show-icons: false;
+    drun-display-format: "{name}";
+}
+
+* {
+    background: #1e1e2e;
+    foreground: #cdd6f4;
+    accent: #cba6f7;
+    surface: #313244;
+}
+
+window {
+    width: 420px;
+    background-color: @background;
+    border: 2px;
+    border-color: @accent;
+    border-radius: 6px;
+}
+
+mainbox {
+    padding: 12px;
+    spacing: 8px;
+}
+
+inputbar {
+    padding: 8px;
+    background-color: @surface;
+    border-radius: 4px;
+    children: [entry];
+}
+
+entry {
+    text-color: @foreground;
+    placeholder: "Search applications...";
+    placeholder-color: #6c7086;
+}
+
+listview {
+    lines: 6;
+    spacing: 2px;
+    scrollbar: false;
+}
+
+element {
+    padding: 7px;
+    border-radius: 4px;
+}
+
+element-text {
+    text-color: @foreground;
+}
+
+element selected {
+    background-color: @accent;
+}
+
+element-text selected {
+    text-color: @background;
+}
