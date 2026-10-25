@@ -1,0 +1,97 @@
+# CATPPUCCIN MOCHA - MINIMAL i3
+set $mod Mod4
+
+# Palette
+set $base     #1e1e2e
+set $surface0 #313244
+set $surface1 #45475a
+set $text     #cdd6f4
+set $subtext  #a6adc8
+set $mauve    #cba6f7
+set $red      #f38ba8
+
+font pango:DejaVu Sans Mono 10
+
+# Appearance
+gaps inner 6
+gaps outer 3
+default_border pixel 2
+default_floating_border pixel 2
+
+client.focused          $mauve    $surface0 $text    $mauve $mauve
+client.focused_inactive $surface1 $base     $subtext $surface1 $surface1
+client.unfocused        $surface0 $base     $subtext $surface0 $surface0
+client.urgent           $red      $base     $text    $red $red
+
+# Applications
+bindsym $mod+Return exec xterm
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+Shift+q kill
+
+# Focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move windows
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Layout
+bindsym $mod+b split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Workspaces
+set $ws1 "1:term"
+set $ws2 "2:code"
+set $ws3 "3:web"
+set $ws4 "4:files"
+set $ws5 "5:misc"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+
+# Resize mode
+mode "resize" {
+    bindsym h resize shrink width 10 px
+    bindsym j resize grow height 10 px
+    bindsym k resize shrink height 10 px
+    bindsym l resize grow width 10 px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Session controls
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec i3-msg exit
+
+# Startup
+exec --no-startup-id sh -c 'test ! -f "$HOME/.fehbg" || "$HOME/.fehbg"'
+exec --no-startup-id dunst
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
